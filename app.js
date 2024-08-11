@@ -88,14 +88,14 @@ app.post("/login", async (req, res) => {
     });
 
     if (!user) {
-      return res.status(404).send("Usuario no encontrado");
+      return res.status(404).send("Incorrect credentials");
     }
 
     // Verifica la contraseña
     const isMatch = await bcrypt.compare(password, user.password);
 
     if (!isMatch) {
-      return res.status(400).send("Contraseña incorrecta");
+      return res.status(400).send("Incorrect credentials");
     }
 
     // Genera un token JWT
